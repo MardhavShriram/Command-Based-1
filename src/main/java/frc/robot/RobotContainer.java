@@ -8,8 +8,11 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.Arcadedrive;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.PivotDown;
+import frc.robot.commands.PivotUp;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Pivot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -26,9 +29,16 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final Drivetrain dt = new Drivetrain();
+  private final Pivot pivot = new Pivot();
 
   private final Joystick l_joystick = new Joystick(0);
   private final Joystick r_joystick = new Joystick(1);
+
+  //Joystick Buttons
+  //Joystick Button 1
+  private final JoystickButton pivot_up_button = new JoystickButton(r_joystick, 2);
+  //Joystick button 2
+  private final JoystickButton pivot_down_button = new JoystickButton(r_joystick, 3);
 
 
 
@@ -60,6 +70,9 @@ public class RobotContainer {
     // Schedule `exampleMethodCommand` when the Xbox controller's B button is pressed,
     // cancelling on release.
     m_driverController.b().whileTrue(m_exampleSubsystem.exampleMethodCommand());
+
+    pivot_down_button.whileTrue(new PivotUp(pivot));
+    pivot_up_button.whileTrue(new PivotDown(pivot));
   }
 
   /**

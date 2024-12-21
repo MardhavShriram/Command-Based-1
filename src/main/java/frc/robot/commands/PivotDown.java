@@ -5,12 +5,14 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 import frc.robot.subsystems.Pivot;
 
 public class PivotDown extends Command {
   /** Creates a new PivotDown. */
   Pivot pt;
+  JoystickButton ptu;
   public PivotDown(Pivot pt) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.pt = pt;
